@@ -10,7 +10,7 @@ Loading the knitr package
 library(knitr)
 ```
 
-Setting Global Option where echo = true
+Setting Global Option where echo = true so that someone will be able to read the code.
 ```{r setoptions, echo=TRUE}
 knitr::opts_chunk$set(echo = TRUE, results = "asis")
 ```
