@@ -2,16 +2,30 @@
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
-  html_document:
-    keep_md: true
+html_document:
+keep_md: true
 ---
+## Loading all the packages
+## knitr
+library(knitr)
 
 ```{r setoptions, echo=TRUE}
-opts_chunk$set(echo = TRUE, results = "asis")
+knitr::opts_chunk$set(echo = TRUE, results = "asis")
 ```
 
-## Loading and preprocessing the data
 
+## Loading and preprocessing the data
+```{r, results='markup', warning=TRUE, message=TRUE}
+if (!file.exists("activity.csv") )
+{
+  url <- 'https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'  
+  download.file(url, destfile='repdata-data-activity.zip', mode='wb')  
+  unzip('repdata-data-activity.zip')
+}
+
+data <- read.csv("activity.csv", header = TRUE, sep = ",", na.strings = "NA", colClasses=c("numeric", "character", "numeric"))
+
+```
 
 
 ## What is mean total number of steps taken per day?
