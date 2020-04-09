@@ -1,3 +1,4 @@
+
 ---
 title: "Reproducible Research: Peer Assessment 1"
 output: 
@@ -5,7 +6,8 @@ output:
     keep_md: true
 ---
 
-
+```{r setoptions, echo=TRUE}
+opts_chunk$set(echo = TRUE)
 ## Loading and preprocessing the data
 
 
