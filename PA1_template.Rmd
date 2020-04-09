@@ -7,7 +7,9 @@ output:
 ---
 
 ```{r setoptions, echo=TRUE}
-opts_chunk$set(echo = TRUE)
+opts_chunk$set(echo = TRUE, results = "asis")
+```
+
 ## Loading and preprocessing the data
 
 
