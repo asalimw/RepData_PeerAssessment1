@@ -5,10 +5,12 @@ output:
 html_document:
 keep_md: true
 ---
-## Loading all the packages
-## knitr
+Loading the knitr package
+```{r}
 library(knitr)
+```
 
+Setting Global Option where echo = true
 ```{r setoptions, echo=TRUE}
 knitr::opts_chunk$set(echo = TRUE, results = "asis")
 ```
@@ -30,6 +32,7 @@ data <- read.csv("activity.csv", header = TRUE, sep = ",", na.strings = "NA", co
 
 ## What is mean total number of steps taken per day?
 
+1. Make a histogram of the total number of steps taken each day
 
 
 ## What is the average daily activity pattern?
