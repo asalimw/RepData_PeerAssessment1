@@ -10,14 +10,14 @@ Loading the knitr package
 library(knitr)
 ```
 
-Setting Global Option where echo = true so that someone will be able to read the code.
+Setting Global Option where echo = true so that someone will be able to read the code and results.
 ```{r setoptions, echo=TRUE}
 knitr::opts_chunk$set(echo = TRUE, results = "asis")
 ```
 
 
 ## Loading and preprocessing the data
-```{r}
+```{r, LoadingAndProcessingData}
 if (!file.exists("activity.csv") )
 {
   url <- 'https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip'  
@@ -34,14 +34,25 @@ data <- read.csv("activity.csv", header = TRUE, sep = ",", na.strings = "NA", co
 
 1. Calculate the total number of steps taken per day
 
-```{r}
+```{r, StepsByDayUsingAggregate}
 steps_by_day <- aggregate(steps ~ date, data=data, sum)
 ```
 
 2. Make a histogram of the total number of steps taken each day
-```{r}
+```{r, HistogramStepsPerDay}
 hist(steps_by_day$steps, main = paste("Total Steps Per Day"), col="red",xlab="Number of Steps")
 ```
+
+3. Calculate and report the mean and median of the total number of steps taken per day
+```{r, MeanMedianTotalSteps}
+meanSteps <- mean(steps_by_day$steps)
+meanSteps
+
+medianSteps <- median(steps_by_day$steps)
+medianSteps
+```
+
+###### The mean total number of steps taken per day is `r meanSteps` and the median total number of steps taken per day `r medianSteps`.
 
 
 
