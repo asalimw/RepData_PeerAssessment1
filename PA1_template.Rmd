@@ -40,7 +40,7 @@ steps_by_day <- aggregate(steps ~ date, data=data, sum)
 
 2. Make a histogram of the total number of steps taken each day
 ```{r, HistogramStepsPerDay}
-hist(steps_by_day$steps, breaks = 10, main = paste("Total Steps Per Day"), col="red",xlab="Number of Steps")
+hist(steps_by_day$steps, breaks = 20, main = paste("Total Steps Per Day"), col="red",xlab="Number of Steps")
 ```
 
 3. Calculate and report the mean and median of the total number of steps taken per day
@@ -60,9 +60,25 @@ medianSteps
 
 1. Make a time series plot (i.e. type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 
+Load lattice package and prepare data for plot
+```{r, TimeSeriesPlot}
 
+library(lattice)
+
+intervalSteps <- aggregate(x= list(steps = data$steps), by =list(interval = data$interval), FUN = mean, na.rm = TRUE)
+
+xyplot(intervalSteps$steps ~ intervalSteps$interval, type = "l", xlab ="5-minute interval", ylab = "the average number of steps taken", main = "Average daily activity pattern")
+
+```
 
 2. Which 5-minute interval, on average across all the days in the dataset, contains the maximum number of steps?
+
+```{r, maxIntervalSteps}
+maxIntervalSteps <- intervalSteps[which.max(intervalSteps$steps),]
+maxIntervalSteps
+```
+
+The 5 minute interval with maximum number of steps is at `r maxIntervalSteps$interval`
 
 
 ## Imputing missing values
