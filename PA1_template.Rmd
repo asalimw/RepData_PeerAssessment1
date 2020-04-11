@@ -78,7 +78,7 @@ maxIntervalSteps <- intervalSteps[which.max(intervalSteps$steps),]
 maxIntervalSteps
 ```
 
-The 5 minute interval with maximum number of steps is at `r maxIntervalSteps$interval`
+###### The 5 minute interval with maximum number of steps is at `r maxIntervalSteps$interval` interval.
 
 
 ## Imputing missing values
