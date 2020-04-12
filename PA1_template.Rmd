@@ -1,8 +1,8 @@
 
 ---
 title: "Reproducible Research: Peer Assessment 1"
-output: 
-html_document:
+output: PA1_template.Rmd
+html_document:PA1_template.html
 keep_md: true
 ---
 Loading the knitr package
