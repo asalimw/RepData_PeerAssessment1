@@ -143,5 +143,13 @@ str(filledData)
 table(filledData$daytype)
 ```
 
-
 2. Make a panel plot containing a time series plot (i.e. type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all weekday days or weekend days (y-axis). See the README file in the GitHub repository to see an example of what this plot should look like using simulated data.
+```{r, WeekdayWeekendPlot}
+meanSteps <- aggregate(filledData$steps, list(as.numeric(filledData$interval), filledData$daytype), FUN = "mean")
+
+names(meanSteps) <- c("interval","weekDays", "avgSteps")
+
+xyplot(meanSteps$avgSteps ~ meanSteps$interval | meanSteps$weekDays, 
+       layout = c(1, 2), type = "l", 
+       xlab = "Interval", ylab = "Number of steps", main = "5 mins interval on average number of steps taken")
+```
