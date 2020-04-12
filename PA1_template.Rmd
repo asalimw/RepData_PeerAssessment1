@@ -138,7 +138,9 @@ Judging from the new values, there are no difference in mean steps but a differe
 ```{r, filledDataWithDays}
 library(lubridate)
 filledData$day <- weekdays(as.Date(filledData$date))
-filledData$daytype <- ifelse(weekdays(as.Date(filledData$date)) %in% c("Saturday","Sunday"), "weekday", "weekend")
+filledData$daytype <- ifelse(weekdays(as.Date(filledData$date)) %in% c("Saturday","Sunday"), "weekend", "weekday")
+str(filledData)
+table(filledData$daytype)
 ```
 
 
