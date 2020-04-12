@@ -68,7 +68,7 @@ medianSteps
 ## What is the average daily activity pattern?
 1. Make a time series plot (i.e. type="l") of the 5-minute interval (x-axis) and the average number of steps taken, averaged across all days (y-axis)
 ```{r, TimeSeriesPlot}
-## To make this plot we need to perform aggreate by steps and intervals, returning means.
+## To make this plot we need to perform aggreate by steps and intervals, returning means and removing all the na values.
 intervalSteps <- aggregate(x= list(steps = data$steps), by =list(interval = data$interval), FUN = mean, na.rm = TRUE)
 
 ## Plot the time series using xyplot with type "l".
@@ -98,7 +98,7 @@ missingSteps <- sum(is.na(data))
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
 ```{r, newStepsStrategy}
-## Using for loop to search all rows and assign new data to the missing data using the aggregate vector created previously.
+## Using for loop to search all rows and assign new data to the missing data using the aggregate factor variable created previously.
 newData <- function(data){
         for (i in 1:nrow(data)){
                 if(is.na(data[i,1])){
@@ -119,7 +119,7 @@ filledData <- newData(data)
 ## To make this histogram we need to perform aggreate by steps and date from the filledData, returning sum(total steps each day).
 newSteps <- aggregate(steps ~ date, data=filledData, sum)
 
-## Create the histogram using the assigned value.
+## Create the histogram using the aggregrated factor variable.
 hist(newSteps$steps, breaks = 20, main = paste("Total Steps Each Day (New)"), col="red",xlab="Number of Steps")
 ```
 
@@ -132,7 +132,7 @@ newMeanSteps
 newMedianSteps <- median(newSteps$steps)
 newMedianSteps
 
-##Calculating the difference of median steps
+##Calculating the difference of new median steps from the previous median steps
 diffMedianSteps <- newMedianSteps - medianSteps 
 diffMedianSteps
 ```
