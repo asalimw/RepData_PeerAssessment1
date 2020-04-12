@@ -90,7 +90,7 @@ missingSteps <- sum(is.na(data))
 
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
-```{r, newStepsData}
+```{r, newStepsStrategy}
 newData <- function(data){
         for (i in 1:nrow(data)){
                 if(is.na(data[i,1])){
@@ -104,12 +104,18 @@ newData <- function(data){
 
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
 
-
+```{r, NewStepsData }
+filledData <- newData(data)
+```
 
 4. Make a histogram of the total number of steps taken each day and Calculate and report the mean and median total number of steps taken per day. Do these values differ from the estimates from the first part of the assignment? What is the impact of imputing missing data on the estimates of the total daily number of steps?
+```{r, NewDataHistogram}
+newSteps <- aggregate(steps ~ date, data=filledData, sum)
 
-
+hist(newSteps$steps, breaks = 20, main = paste("Total Steps Each Day (New)"), col="red",xlab="Number of Steps")
+```
 
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
