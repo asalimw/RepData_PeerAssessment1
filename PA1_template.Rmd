@@ -117,6 +117,20 @@ newSteps <- aggregate(steps ~ date, data=filledData, sum)
 hist(newSteps$steps, breaks = 20, main = paste("Total Steps Each Day (New)"), col="red",xlab="Number of Steps")
 ```
 
+```{r, NewMeanMedianSteps}
+newMeanSteps <- mean(newSteps$steps)
+newMeanSteps
+
+newMedianSteps <- median(newSteps$steps)
+newMedianSteps
+
+diffMedianSteps <- newMedianSteps - medianSteps 
+diffMedianSteps
+```
+
+The new mean steps is `r newMeanSteps` and the new median steps is `r newMedianSteps`
+
+Judging from the new values, there are no difference in mean steps but a difference in median steps by `r diffMedianSteps`
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
