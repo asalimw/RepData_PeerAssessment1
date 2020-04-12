@@ -93,7 +93,9 @@ maxIntervalSteps
 ```{r, missingSteps}
 ##Calculate the total number of missing values in the data.
 missingSteps <- sum(is.na(data))
+missingSteps
 ```
+
 **Ans: The total number of missing values in the dataset is `r missingSteps`.**
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
@@ -166,3 +168,6 @@ xyplot(meanSteps$avgSteps ~ meanSteps$interval | meanSteps$weekDays,
        layout = c(1, 2), type = "l", 
        xlab = "Interval", ylab = "Number of steps", main = "5 mins interval on average number of steps taken")
 ```
+
+
+
