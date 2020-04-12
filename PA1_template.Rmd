@@ -78,7 +78,7 @@ maxIntervalSteps <- intervalSteps[which.max(intervalSteps$steps),]
 maxIntervalSteps
 ```
 
-###### The 5 minute interval with maximum number of steps is at `r maxIntervalSteps$interval` interval.
+###### The 5 minute interval with maximum number of steps is at `r maxIntervalSteps$interval` interval with the maximum of `r maxIntervalSteps$steps` steps.
 
 
 ## Imputing missing values
@@ -90,6 +90,16 @@ missingSteps <- sum(is.na(data))
 
 
 2. Devise a strategy for filling in all of the missing values in the dataset. The strategy does not need to be sophisticated. For example, you could use the mean/median for that day, or the mean for that 5-minute interval, etc.
+```{r, newStepsData}
+newData <- function(data){
+        for (i in 1:nrow(data)){
+                if(is.na(data[i,1])){
+                        data[i,"steps"] <- intervalSteps[intervalSteps$interval == data[i,"interval"],"steps"] 
+                }
+        }
+        return(data)
+}
+```
 
 
 3. Create a new dataset that is equal to the original dataset but with the missing data filled in.
